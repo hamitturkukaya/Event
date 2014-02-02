@@ -16,5 +16,9 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    <string name="etkinlik_ekle_hint_etkinlik_adi">Etkinlik Adı</string>
+    <string name="etkinlik_ekle_hint_etkinlik_aciklama">Açıklama</string>
+    <string name="etkinlik_ekle_hint_etkinlik_yer">Yer</string>
+    <string name="etkinlik_ekle_etkinlik_kaydet">Kaydet</string>
 
 </resources>

@@ -61,8 +61,10 @@ public class LoginActivity extends Activity implements OnClickListener{
 		if (kullaniciAdi.isEmpty() || sifre.isEmpty()) {
 			Genel.uyar(this);
 		} else {	
-			if (kullaniciAdi.equals("turku") && sifre.equals("kaya")) {
-				loginTvSonuc.setText(R.string.basarili);
+			if (kullaniciAdi.equals("1") && sifre.equals("1")) {
+				Intent i = new Intent(this, AnaActivity.class);
+				i.putExtra("kullaniciAdi", kullaniciAdi);
+				startActivity(i);
 			} else {
 				loginTvSonuc.setText(R.string.başarısız);
 			}

@@ -22,8 +22,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name="com.mersin.event.KayitActivity"></activity>
+        <activity
+            android:name="com.mersin.event.KayitActivity"
+            android:label="@string/title_activity_kayit" >
+        </activity>
+        <activity
+            android:name="com.mersin.event.AnaActivity"
+            android:label="@string/title_activity_ana" >
+        </activity>
+        <activity
+            android:name="com.mersin.event.EtkinliklerimActivity"
+            android:label="@string/title_activity_etkinliklerim" >
+        </activity>
+        <activity
+            android:name="com.mersin.event.ArkadaslarimActivity"
+            android:label="@string/title_activity_arkadaslarim" >
+        </activity>
+        <activity
+            android:name="com.mersin.event.YeniEtkinlikActivity"
+            android:label="@string/title_activity_yeni_etkinlik" >
+        </activity>
+        <activity
+            android:name="com.mersin.event.ArkadasAraActivity"
+            android:label="@string/title_activity_arkadas_ara" >
+        </activity>
+        <activity
+            android:name="com.mersin.event.ArkadasEtkinlikleriActivity"
+            android:label="@string/title_activity_arkadas_etkinlikleri" >
+        </activity>
     </application>
 
 </manifest>

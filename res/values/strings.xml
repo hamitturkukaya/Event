@@ -2,24 +2,39 @@
 <resources>
 
     <string name="app_name">Event</string>
+    <string name="title_activity_kayit">Kayıt</string>
+    <string name="title_activity_ana">Ana</string>
+    <string name="title_activity_arkadaslarim">Arkadaşlarım</string>
+    <string name="title_activity_etkinliklerim">Etkinliklerim</string>
+    <string name="title_activity_yeni_etkinlik">Yeni Etkinlik Ekle</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-	
-	<string name="login_hint_kullanici_adi">Kullanıcı Adınız</string>
-	<string name="login_hint_sifre">Şifre</string>
-	<string name="login_giris">Giriş</string>
-	<string name="login_uye_ol">Üye Ol</string>
-	<string name="login_sonuc">Sonuç: </string>
-	<string name="basarili">Başarılı</string>
-	<string name="başarısız">Başarısız</string>
-		
-	<string name="kayit_hint_ad_soyad">Ad Soyad</string>
-	<string name="kayit_hint_email">E-Mail</string>
-	<string name="kayit_hint_kullanici_adi">Kullanıcı Adı</string>
-	<string name="kayit_hint_sifre">Şifre</string>
-	<string name="kayit_register">Kayıt</string>
-	
-	<string name="alert_title">Uyarı</string>
-	<string name="alert_message">Lütfen tüm alanları doldurun</string>
-	<string name="alert_positive_button">Tamam</string>
+    <string name="login_hint_kullanici_adi">Kullanıcı Adınız</string>
+    <string name="login_hint_sifre">Şifre</string>
+    <string name="login_giris">Giriş</string>
+    <string name="login_uye_ol">Üye Ol</string>
+    <string name="login_sonuc">Sonuç: </string>
+    <string name="basarili">Başarılı</string>
+    <string name="başarısız">Başarısız</string>
+    <string name="kayit_hint_ad_soyad">Ad Soyad</string>
+    <string name="kayit_hint_email">E-Mail</string>
+    <string name="kayit_hint_kullanici_adi">Kullanıcı Adı</string>
+    <string name="kayit_hint_sifre">Şifre</string>
+    <string name="kayit_register">Kayıt</string>
+    <string name="alert_title">Uyarı</string>
+    <string name="alert_message">Lütfen tüm alanları doldurun</string>
+    <string name="alert_positive_button">Tamam</string>
+    <string name="etkinlik_hint_ad">Etkinlik Adı</string>
+    <string name="etkinlik_hint_tarih">Etkinlik Tarihi</string>
+    <string name="etkinlik_kaydet">Kaydet</string>
+    <string name="etkinlik_hint_yer">Etkinlik Yeri</string>
+    <string name="ana_hint_etkinliklerim">Etkinliklerim</string>
+    <string name="ana_hint_arkadaslarim">Arkadaşlarım</string>
+    <string name="etkinliklerim_menu_item_yeni_etkinlik">Yeni Etkinlik Ekle</string>
+    <string name="arkadaslarim_menu_item_arkadas_ara">Arkadaş Ara</string>
+    <string name="title_activity_arkadas_ara">Arkadaş Ara</string>
+    <string name="arkadas_ara_hiny_et_ad_soyad">Ad Soyad</string>
+    <string name="arkadas_ara_btn_ara">Ara</string>
+    <string name="title_activity_arkadas_etkinlikleri">Arkadas Etkinlikleri</string>
+
 </resources>

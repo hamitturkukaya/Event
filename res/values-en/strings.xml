@@ -5,6 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     
+    	
+    <string name="title_activity_kayit">Register</string>
+    <string name="title_activity_ana">Main</string>
+    <string name="title_activity_arkadaslarim">Frients</string>
+    <string name="title_activity_etkinliklerim">Events</string>
+    <string name="title_activity_yeni_etkinlik">Add New Event</string>
 	<string name="login_hint_kullanici_adi">UserName</string>
 	<string name="login_hint_sifre">Password</string>
 	<string name="login_giris">Log in</string>
@@ -21,5 +27,14 @@
 	
 	<string name="alert_title">Warning</string>
 	<string name="alert_message">Please fill all fields</string>
-	<string name="alert_positive_button">Ok</string>
+	<string name="alert_positive_button">OK</string>
+	<string name="etkinlik_hint_ad">Event Name</string>
+	<string name="etkinlik_hint_tarih">Date</string>
+	<string name="etkinlik_kaydet">Save</string>
+	<string name="etkinlik_hint_yer">Place</string>
+	<string name="ana_hint_etkinliklerim">My Events</string>
+	<string name="ana_hint_arkadaslarim">Friends</string>
+	<string name="etkinliklerim_menu_item_yeni_etkinlik">New Event</string>
+	<string name="arkadaslarim_menu_item_arkadas_ara">Search Friend</string>
+	<string name="arkadas_ara_hiny_et_ad_soyad">Name</string>
 </resources>

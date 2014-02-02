@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/etkinliklerimMenuItemYeniEtkinlik"
+        android:showAsAction="always"
+        android:title="@string/etkinliklerim_menu_item_yeni_etkinlik" />
+
+</menu>

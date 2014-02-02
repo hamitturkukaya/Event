@@ -1,6 +1,7 @@
 package com.mersin.event;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +43,15 @@ public class KayitActivity extends Activity implements OnClickListener{
 				Genel.uyar(this);
 			} else {
 				String mesaj = adSoyad + " " + kullaniciAdi + " " + email + " " + sifre;
-				Toast.makeText(this, mesaj, Toast.LENGTH_LONG).show();
+				boolean kayitBasarili = true;
+				
+				if (kayitBasarili) {
+					Intent i = new Intent(this, AnaActivity.class);
+					i.putExtra("kullaniciAdi", kullaniciAdi);
+					startActivity(i);
+				} else {
+					Toast.makeText(this, "Kaydedilemedi", Toast.LENGTH_SHORT).show();
+				}
 			}
 		}
 		
