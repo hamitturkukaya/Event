@@ -68,9 +68,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 			KullaniciOperation operation = new KullaniciOperation();
 			KullaniciEntity kullanici = operation.giris(kullaniciAdi, sifre);
 			if (kullanici != null) {
+				Genel.kullaniciId = kullanici.getId();
+				Genel.kullaniciAdi = kullanici.getKullaniciAdi();
 				Intent i = new Intent(this, AnaActivity.class);
-				i.putExtra("kullaniciAdi", kullanici.getKullaniciAdi());
-				i.putExtra("kullaniciId", kullanici.getId());
 				startActivity(i);
 			} else {
 				loginTvSonuc.setText(R.string.başarısız);

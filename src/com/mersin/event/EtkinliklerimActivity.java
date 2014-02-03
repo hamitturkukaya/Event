@@ -1,43 +1,40 @@
 package com.mersin.event;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.mersin.entity.EtkinlikEntity;
+import com.mersin.entity.EtkinlikOperation;
+import com.mersin.entity.KullaniciEntity;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources.Theme;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class EtkinliklerimActivity extends ListActivity {
 
-	String kullaniciAdi;
-	int kullaniciId;
-	ArrayList<String> alEtkinliklerim;
+	ArrayList<EtkinlikEntity> alEtkinliklerim;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_etkinliklerim);
+		AsenkronEtkinlik async = new AsenkronEtkinlik();
+		async.execute();
 		
-		kullaniciAdi = getIntent().getExtras().getString("kullaniciAdi");
-		kullaniciId = getIntent().getExtras().getInt("kullaniciId");
-		alEtkinliklerim = getEtkinlikList();
-		ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.satir_tasarimi, alEtkinliklerim);
-		setListAdapter(adp);
-	}
-
-	private ArrayList<String> getEtkinlikList() {
-		ArrayList<String> etkinliklerim = new ArrayList<String>();
-		etkinliklerim.add("AB 2014");
-		etkinliklerim.add("LKD 2014");
-		etkinliklerim.add("Doğum günü");
-		etkinliklerim.add("Yılbaşı");
-		
-		return etkinliklerim;
 	}
 
 	@Override
@@ -60,21 +57,85 @@ public class EtkinliklerimActivity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void yeniEtkinlikEke() {
-		
+	private void yeniEtkinlikEke() {		
 		Intent i = new Intent(this, YeniEtkinlikActivity.class);
-		i.putExtra("kullaniciAdi", kullaniciAdi);
 		startActivity(i);
-		
 	}
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
+		EtkinlikEntity etkinlik = alEtkinliklerim.get(position);
+		Toast.makeText(this, etkinlik.getAd(), Toast.LENGTH_SHORT).show();
+	}
+
+	public class EtkinlikAdapter extends ArrayAdapter<EtkinlikEntity>{
+
+		ArrayList<EtkinlikEntity> etkinlikler;
 		
-		String etkinlikAdi = alEtkinliklerim.get(position);
-		Toast.makeText(this, etkinlikAdi, Toast.LENGTH_SHORT).show();
+		public EtkinlikAdapter(Context context, int resource, List<EtkinlikEntity> objects) {
+			super(context, resource, objects);
+			etkinlikler = (ArrayList<EtkinlikEntity>) objects;
+		}
+		
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			EtkinlikEntity etkinlik = etkinlikler.get(position);
+			
+			LayoutInflater inf = getLayoutInflater();
+			
+			View satir = inf.inflate(R.layout.satir_tasarimi, parent, false);
+			
+			TextView ad = (TextView) satir.findViewById(R.id.satirtasarimiTvAdSoyad);
+			TextView aciklama = (TextView) satir.findViewById(R.id.satirtasarimikullaniciAdi);
+			ad.setText(etkinlik.getAd());
+			aciklama.setText(etkinlik.getAciklama());
+			
+			return satir;
+			
+		}
+		
+	}
+	
+	public class AsenkronEtkinlik extends AsyncTask<Void, Void, ArrayList<EtkinlikEntity>>{
+
+		ProgressDialog prg;
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			
+			prg = new ProgressDialog(EtkinliklerimActivity.this);
+			prg.setTitle("Yükleiyor");
+			prg.setMessage("Etkinlikler Alınıyor");
+			prg.show();
+		}
+		
+		@Override
+		protected ArrayList<EtkinlikEntity> doInBackground(Void... params) {
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			EtkinlikOperation operation = new EtkinlikOperation();
+			alEtkinliklerim = operation.getEtkinlikList();
+			return alEtkinliklerim;
+		}
+		
+		@Override
+		protected void onPostExecute(ArrayList<EtkinlikEntity> result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			EtkinlikAdapter adp = new EtkinlikAdapter(EtkinliklerimActivity.this, R.layout.satir_tasarimi2, alEtkinliklerim);
+			setListAdapter(adp);
+			prg.dismiss();
+		}
 	}
 
 }

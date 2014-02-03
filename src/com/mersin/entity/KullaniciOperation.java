@@ -85,4 +85,48 @@ public class KullaniciOperation {
 		return arkadaslar;
 		
 	}
+	
+	public ArrayList<KullaniciEntity> arkadasAra(String arkadasAdSoyad){
+		
+		ArrayList<KullaniciEntity> arkadaslar = new ArrayList<KullaniciEntity>();
+		
+		// Burada web servisinden ad soyada gore kişiler listelenecek 
+		
+		KullaniciEntity kul1= new KullaniciEntity();
+		
+		kul1.setId(3);
+		kul1.setAdSoyad("Ali");
+		kul1.setKullaniciAdi("ali");
+		kul1.setEmail("ali@ab.org");
+	
+
+		KullaniciEntity kul2= new KullaniciEntity();
+		
+		kul2.setId(4);
+		kul2.setAdSoyad("Veli");
+		kul2.setKullaniciAdi("veli");
+		kul2.setEmail("veli@ab.org");
+		
+		KullaniciEntity kul3= new KullaniciEntity();
+		
+		kul3.setId(4);
+		kul3.setAdSoyad("Ahmet");
+		kul3.setKullaniciAdi("ahmet");
+		kul3.setEmail("ahmet@ab.org");
+		
+		KullaniciEntity kul4= new KullaniciEntity();
+		
+		kul4.setId(4);
+		kul4.setAdSoyad("Mehmet");
+		kul4.setKullaniciAdi("mehmet");
+		kul4.setEmail("mehmet@ab.org");
+		
+		
+		arkadaslar.add(kul1);	
+		arkadaslar.add(kul2);
+		arkadaslar.add(kul3);
+		arkadaslar.add(kul4);
+		return arkadaslar;
+		
+	}
 }

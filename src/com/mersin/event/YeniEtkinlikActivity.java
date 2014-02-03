@@ -1,5 +1,8 @@
 package com.mersin.event;
 
+import com.mersin.entity.EtkinlikEntity;
+import com.mersin.entity.EtkinlikOperation;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -11,7 +14,6 @@ import android.widget.Toast;
 
 public class YeniEtkinlikActivity extends Activity implements OnClickListener{
 
-	String kullaniciAdi;
 	EditText etkinlikEkleEtEtkinlikAdi;
 	EditText etkinlikEkleEtEtkinlikAciklama;
 	EditText etkinlikEkleEtEtkinlikYer;
@@ -21,9 +23,6 @@ public class YeniEtkinlikActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_yeni_etkinlik);
-		
-		kullaniciAdi = getIntent().getExtras().getString("kullaniciAdi");
-		
 		etkinlikEkleEtEtkinlikAdi = (EditText) findViewById(R.id.etkinlikEkleEtEtkinlikAdi);
 		etkinlikEkleEtEtkinlikAciklama = (EditText) findViewById(R.id.etkinlikEkleEtEtkinlikAciklama);
 		etkinlikEkleEtEtkinlikYer = (EditText) findViewById(R.id.etkinlikEkleEtEtkinlikYer);
@@ -44,10 +43,19 @@ public class YeniEtkinlikActivity extends Activity implements OnClickListener{
 			String etkinlik_adi = etkinlikEkleEtEtkinlikAdi.getText().toString();
 			String etkinlik_aciklama = etkinlikEkleEtEtkinlikAciklama.getText().toString();
 			String etkinlik_yer = etkinlikEkleEtEtkinlikYer.getText().toString();
-			
-			String mesaj = etkinlik_adi + " " + etkinlik_aciklama + " " + etkinlik_yer;
-			
-			Toast.makeText(this, mesaj, Toast.LENGTH_LONG).show();
+
+			EtkinlikEntity etkinlik = new EtkinlikEntity();
+			etkinlik.setAd(etkinlik_adi);
+			etkinlik.setAciklama(etkinlik_aciklama);
+			etkinlik.setYer(etkinlik_yer);
+			etkinlik.setKullaniciId(Genel.kullaniciId);
+			EtkinlikOperation operation = new EtkinlikOperation();
+			boolean sonuc = operation.kayit(etkinlik);
+			if (sonuc) {
+				Toast.makeText(this, "Başarıyla Kaydedildi", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(this, "Kaydedilemedi", Toast.LENGTH_LONG).show();
+			}
 		}
 		
 	}

@@ -1,46 +1,48 @@
 package com.mersin.event;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.mersin.entity.EtkinlikEntity;
+import com.mersin.entity.EtkinlikOperation;
 
 import android.os.Bundle;
 
 import android.app.ListActivity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ArkadasEtkinlikleriActivity extends ListActivity {
-
-	String kullaniciAdi;
 	String arkadasAdi;
+	int arkadasId;
 	TextView arkadasEtkinlikleriTvArkadasAdi;
-	ArrayList<String> alArkadaslariminEtkinlikleri;
+	ArrayList<EtkinlikEntity> alArkadaslariminEtkinlikleri;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_arkadas_etkinlikleri);
 		Bundle paket = getIntent().getExtras();
-		kullaniciAdi = paket.getString("kullaniciAdi");
 		arkadasAdi = paket.getString("arkadasAdi");
+		arkadasId = paket.getInt("arkadasId");
+		
 		
 		arkadasEtkinlikleriTvArkadasAdi = (TextView) findViewById(R.id.arkadasEtkinlikleriTvArkadasAdi);
 		arkadasEtkinlikleriTvArkadasAdi.setText(arkadasAdi);
 		
-		alArkadaslariminEtkinlikleri = getArkadasEtkinlikleriList();
-		ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.satir_tasarimi, alArkadaslariminEtkinlikleri);
-		setListAdapter(adp);
-	}
-
-	private ArrayList<String> getArkadasEtkinlikleriList() {
-		ArrayList<String> arkadaslariminEtkinlikleri = new ArrayList<String>();
-		arkadaslariminEtkinlikleri.add("Ab 2014");
-		arkadaslariminEtkinlikleri.add("Rails Rumble");
-		arkadaslariminEtkinlikleri.add("Heroku Hackaton");
+		EtkinlikOperation operation = new EtkinlikOperation();
 		
-		return arkadaslariminEtkinlikleri;
+		alArkadaslariminEtkinlikleri = operation.getArkadasEtkinlik(arkadasId);
+		
+		EtkinlikAdapter adp = new EtkinlikAdapter(this, R.layout.satir_tasarimi, alArkadaslariminEtkinlikleri);
+		setListAdapter(adp);
 	}
 
 	@Override
@@ -54,8 +56,34 @@ public class ArkadasEtkinlikleriActivity extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		
-		String etkinlik_adi = alArkadaslariminEtkinlikleri.get(position);
-		Toast.makeText(this, etkinlik_adi, Toast.LENGTH_SHORT).show();
+		EtkinlikEntity etkinlik = alArkadaslariminEtkinlikleri.get(position);
+		Toast.makeText(this, etkinlik.getAd(), Toast.LENGTH_SHORT).show();
 	}
 
+	public class EtkinlikAdapter extends ArrayAdapter<EtkinlikEntity> {
+
+		ArrayList<EtkinlikEntity> etkinlikler;
+		
+		public EtkinlikAdapter(Context context, int resource, List<EtkinlikEntity> objects) {
+			super(context, resource, objects);
+			
+			etkinlikler = (ArrayList<EtkinlikEntity>) objects;
+		}
+		
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			EtkinlikEntity etkinlik = etkinlikler.get(position);
+			
+			LayoutInflater inf = getLayoutInflater();
+			
+			View satir = inf.inflate(R.layout.satir_tasarimi, parent, false);
+			TextView tvAdSoyad = (TextView) satir.findViewById(R.id.satirtasarimiTvAdSoyad);
+			TextView tvKullaniciAdi = (TextView) satir.findViewById(R.id.satirtasarimikullaniciAdi);
+			tvAdSoyad.setText(etkinlik.getAd());
+			tvKullaniciAdi.setText(etkinlik.getAciklama());
+			return satir;
+		}
+		
+		
+	}
 }

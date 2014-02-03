@@ -18,7 +18,7 @@
             android:id="@+id/arkadasAraEtAdSoyad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:ems="10" 
             android:hint="@string/arkadas_ara_hiny_et_ad_soyad" >
 
@@ -29,9 +29,15 @@
             android:id="@+id/arkadasAraBtnAra"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:text="@string/arkadas_ara_btn_ara" />
 
     </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

@@ -58,9 +58,9 @@ public class KayitActivity extends Activity implements OnClickListener{
 				boolean kayitBasarili = operation.kayit(kullanici);
 				
 				if (kayitBasarili) {
+					Genel.kullaniciId = kullanici.getId();
+					Genel.kullaniciAdi = kullanici.getKullaniciAdi();
 					Intent i = new Intent(this, AnaActivity.class);
-					i.putExtra("kullaniciAdi", kullanici.getKullaniciAdi());
-					i.putExtra("kullaniciId", kullanici.getId());
 					startActivity(i);
 				} else {
 					Toast.makeText(this, "Kaydedilemedi", Toast.LENGTH_SHORT).show();

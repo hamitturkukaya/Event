@@ -11,8 +11,6 @@ import android.widget.TextView;
 public class AnaActivity extends Activity implements OnClickListener{
 	
 	TextView anaTvKullaniciAdi;
-	String kullaniciAdi;
-	int kullaniciId;
 	Button anaBtnEtkinliklerim;
 	Button anaBtnArkadaşlar;
 	
@@ -23,9 +21,7 @@ public class AnaActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_ana);
 		
 		anaTvKullaniciAdi = (TextView) findViewById(R.id.anaTvKullaniciAdi);
-		kullaniciAdi = getIntent().getExtras().getString("kullaniciAdi");
-		kullaniciId = getIntent().getExtras().getInt("kullaniciId");
-		anaTvKullaniciAdi.setText(kullaniciAdi);
+		anaTvKullaniciAdi.setText(Genel.kullaniciAdi);
 		anaBtnEtkinliklerim = (Button) findViewById(R.id.anaBtnEtkinliklerim);
 		anaBtnArkadaşlar = (Button) findViewById(R.id.anaBtnArkadaslar);
 		anaBtnEtkinliklerim.setOnClickListener(this);
@@ -46,18 +42,12 @@ public class AnaActivity extends Activity implements OnClickListener{
 	}
 	
 	private void etkinliklerim() {
-		
 		Intent i = new Intent(this, EtkinliklerimActivity.class);
-		i.putExtra("kullaniciAdi", kullaniciAdi);
-		i.putExtra("kullaniciId", kullaniciId);
 		startActivity(i);
-		
 	}
 	
 	private void arkadaslarim() {
 		Intent i = new Intent(this, ArkadaslarimActivity.class);
-		i.putExtra("kullaniciAdi", kullaniciAdi);
-		i.putExtra("kullaniciId", kullaniciId);
 		startActivity(i);
 	}
 
