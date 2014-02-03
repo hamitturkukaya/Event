@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class EtkinliklerimActivity extends ListActivity {
 
 	String kullaniciAdi;
+	int kullaniciId;
 	ArrayList<String> alEtkinliklerim;
 	
 	@Override
@@ -23,6 +24,7 @@ public class EtkinliklerimActivity extends ListActivity {
 		setContentView(R.layout.activity_etkinliklerim);
 		
 		kullaniciAdi = getIntent().getExtras().getString("kullaniciAdi");
+		kullaniciId = getIntent().getExtras().getInt("kullaniciId");
 		alEtkinliklerim = getEtkinlikList();
 		ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.satir_tasarimi, alEtkinliklerim);
 		setListAdapter(adp);

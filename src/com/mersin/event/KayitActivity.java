@@ -1,5 +1,8 @@
 package com.mersin.event;
 
+import com.mersin.entity.KullaniciEntity;
+import com.mersin.entity.KullaniciOperation;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,12 +45,22 @@ public class KayitActivity extends Activity implements OnClickListener{
 			if (adSoyad.isEmpty() || kullaniciAdi.isEmpty() || email.isEmpty() || sifre.isEmpty()) {
 				Genel.uyar(this);
 			} else {
-				String mesaj = adSoyad + " " + kullaniciAdi + " " + email + " " + sifre;
-				boolean kayitBasarili = true;
+				//String mesaj = adSoyad + " " + kullaniciAdi + " " + email + " " + sifre;
+				
+				KullaniciOperation operation = new KullaniciOperation();
+				KullaniciEntity kullanici = new KullaniciEntity();
+				
+				kullanici.setAdSoyad(adSoyad);
+				kullanici.setKullaniciAdi(kullaniciAdi);
+				kullanici.setEmail(email);
+				kullanici.setSifre(sifre);						
+				
+				boolean kayitBasarili = operation.kayit(kullanici);
 				
 				if (kayitBasarili) {
 					Intent i = new Intent(this, AnaActivity.class);
-					i.putExtra("kullaniciAdi", kullaniciAdi);
+					i.putExtra("kullaniciAdi", kullanici.getKullaniciAdi());
+					i.putExtra("kullaniciId", kullanici.getId());
 					startActivity(i);
 				} else {
 					Toast.makeText(this, "Kaydedilemedi", Toast.LENGTH_SHORT).show();

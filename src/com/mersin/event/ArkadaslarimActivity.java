@@ -2,6 +2,9 @@ package com.mersin.event;
 
 import java.util.ArrayList;
 
+import com.mersin.entity.KullaniciEntity;
+import com.mersin.entity.KullaniciOperation;
+
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 public class ArkadaslarimActivity extends ListActivity {
 
 	String kullaniciAdi;
+	int kullaniciId;
 	ArrayList<String> alArkadaslarim;
 	
 	@Override
@@ -23,22 +27,25 @@ public class ArkadaslarimActivity extends ListActivity {
 		setContentView(R.layout.activity_arkadaslarim);
 		
 		kullaniciAdi = getIntent().getExtras().getString("kullaniciAdi");
+		kullaniciId = getIntent().getExtras().getInt("kullaniciId");
+		
 		alArkadaslarim = getArkadasList();
 		ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.satir_tasarimi, alArkadaslarim);
 		setListAdapter(adp);
 	}
 
 	private ArrayList<String> getArkadasList() {
+		KullaniciOperation operation = new KullaniciOperation();
+		
+		
 		ArrayList<String> arkadaslarim = new ArrayList<String>();
-		arkadaslarim.add("Ali");
-		arkadaslarim.add("Veli");
-		arkadaslarim.add("Ahmet");
-		arkadaslarim.add("Mehmet");
-		arkadaslarim.add("Murat");
-		arkadaslarim.add("Umut");
-		arkadaslarim.add("Caner");
-		arkadaslarim.add("İsmail");
-		arkadaslarim.add("Baran");
+		
+		ArrayList<KullaniciEntity> alArkadasEntity = operation.getArkadasList(kullaniciId);
+		
+		for (KullaniciEntity entity : alArkadasEntity) {
+			arkadaslarim.add(entity.getAdSoyad());
+		}
+
 		return arkadaslarim;
 	}
 
@@ -67,12 +74,12 @@ public class ArkadaslarimActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {	
 		super.onListItemClick(l, v, position, id);
-		String arkadasAdi = alArkadaslarim.get(position);
+		String arkadas = alArkadaslarim.get(position);
 		//Toast.makeText(this, arkadasAdi, Toast.LENGTH_SHORT).show();
 		
 		Intent i = new Intent(this, ArkadasEtkinlikleriActivity.class);
 		i.putExtra("kullaniciAdi", kullaniciAdi);
-		i.putExtra("arkadasAdi", arkadasAdi);
+		i.putExtra("arkadasAdi", arkadas);
 		startActivity(i);
 	}
 

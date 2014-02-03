@@ -1,5 +1,8 @@
 package com.mersin.event;
 
+import com.mersin.entity.KullaniciEntity;
+import com.mersin.entity.KullaniciOperation;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -60,10 +63,14 @@ public class LoginActivity extends Activity implements OnClickListener{
 		
 		if (kullaniciAdi.isEmpty() || sifre.isEmpty()) {
 			Genel.uyar(this);
-		} else {	
-			if (kullaniciAdi.equals("1") && sifre.equals("1")) {
+		} else {
+			
+			KullaniciOperation operation = new KullaniciOperation();
+			KullaniciEntity kullanici = operation.giris(kullaniciAdi, sifre);
+			if (kullanici != null) {
 				Intent i = new Intent(this, AnaActivity.class);
-				i.putExtra("kullaniciAdi", kullaniciAdi);
+				i.putExtra("kullaniciAdi", kullanici.getKullaniciAdi());
+				i.putExtra("kullaniciId", kullanici.getId());
 				startActivity(i);
 			} else {
 				loginTvSonuc.setText(R.string.başarısız);
