@@ -3,8 +3,10 @@ package com.mersin.event;
 import com.mersin.entity.KullaniciEntity;
 import com.mersin.entity.KullaniciOperation;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity implements OnClickListener{
 
@@ -19,7 +22,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 	EditText loginEtSifre;
 	Button loginBtnGiris;
 	Button loginBtnUyeOl;
-	TextView loginTvSonuc;
 
 	
 	@Override
@@ -31,7 +33,6 @@ public class LoginActivity extends Activity implements OnClickListener{
 		loginEtSifre = (EditText) findViewById(R.id.loginEtSifre);
 		loginBtnGiris = (Button) findViewById(R.id.loginBtnGiris);
 		loginBtnUyeOl = (Button) findViewById(R.id.loginBtnUyeOl);
-		loginTvSonuc = (TextView) findViewById(R.id.loginTvSonuc);
 		loginBtnGiris.setOnClickListener(this);
 		loginBtnUyeOl.setOnClickListener(this);
 	}
@@ -56,25 +57,60 @@ public class LoginActivity extends Activity implements OnClickListener{
 		Intent i = new Intent(this, KayitActivity.class);
 		startActivity(i);
 	}
+	
+	class AsenkronGiris extends AsyncTask<String, Void, KullaniciEntity>{
+
+		ProgressDialog dialog;
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog = new ProgressDialog(LoginActivity.this);
+			dialog.setTitle("Lütfen Bekleyin");
+			dialog.setMessage("Giriş Yapılıyor");
+			dialog.show();
+		}
+		
+		@Override
+		protected KullaniciEntity doInBackground(String... params) {
+			KullaniciOperation operation = new KullaniciOperation();
+			KullaniciEntity kullanici = operation.giris(params[0], params[1]);
+			
+			return kullanici;
+		}
+		
+		@Override
+		protected void onPostExecute(KullaniciEntity result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if (result != null) {
+				Genel.kullaniciId = result.getId();
+				Genel.kullaniciAdi = result.getKullaniciAdi();
+				Intent i = new Intent(LoginActivity.this, AnaActivity.class);
+				startActivity(i);
+			} else {
+				Toast.makeText(LoginActivity.this, "Başarısız", Toast.LENGTH_LONG).show();
+			}
+			dialog.dismiss();
+		}
+
+		
+	}
 
 	private void giris() {
+		
 		String kullaniciAdi = loginEtKullaniciAdi.getText().toString();
 		String sifre  = loginEtSifre.getText().toString();
-		
 		if (kullaniciAdi.isEmpty() || sifre.isEmpty()) {
 			Genel.uyar(this);
 		} else {
 			
-			KullaniciOperation operation = new KullaniciOperation();
-			KullaniciEntity kullanici = operation.giris(kullaniciAdi, sifre);
-			if (kullanici != null) {
-				Genel.kullaniciId = kullanici.getId();
-				Genel.kullaniciAdi = kullanici.getKullaniciAdi();
-				Intent i = new Intent(this, AnaActivity.class);
-				startActivity(i);
-			} else {
-				loginTvSonuc.setText(R.string.başarısız);
-			}
+
+			AsenkronGiris async = new AsenkronGiris();
+			async.execute(kullaniciAdi, sifre);
+			
+
 		}
 	}
 

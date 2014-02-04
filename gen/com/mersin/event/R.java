@@ -32,12 +32,12 @@ public final class R {
         public static final int arkadasAraBtnAra=0x7f080005;
         public static final int arkadasAraEtAdSoyad=0x7f080004;
         public static final int arkadasEtkinlikleriTvArkadasAdi=0x7f080006;
-        public static final int arkadaslarimMenuItemArkadasAra=0x7f080018;
-        public static final int etkinlikEkleBtnKaydet=0x7f080015;
-        public static final int etkinlikEkleEtEtkinlikAciklama=0x7f080013;
-        public static final int etkinlikEkleEtEtkinlikAdi=0x7f080012;
-        public static final int etkinlikEkleEtEtkinlikYer=0x7f080014;
-        public static final int etkinliklerimMenuItemYeniEtkinlik=0x7f080019;
+        public static final int arkadaslarimMenuItemArkadasAra=0x7f080016;
+        public static final int etkinlikEkleBtnKaydet=0x7f080013;
+        public static final int etkinlikEkleEtEtkinlikAciklama=0x7f080011;
+        public static final int etkinlikEkleEtEtkinlikAdi=0x7f080010;
+        public static final int etkinlikEkleEtEtkinlikYer=0x7f080012;
+        public static final int etkinliklerimMenuItemYeniEtkinlik=0x7f080017;
         public static final int kayitBtnKayit=0x7f08000b;
         public static final int kayitEtAdSoyad=0x7f080007;
         public static final int kayitEtEmail=0x7f080009;
@@ -47,10 +47,8 @@ public final class R {
         public static final int loginBtnUyeOl=0x7f08000f;
         public static final int loginEtKullaniciAdi=0x7f08000c;
         public static final int loginEtSifre=0x7f08000d;
-        public static final int loginTvSonuc=0x7f080011;
-        public static final int satirtasarimiTvAdSoyad=0x7f080016;
-        public static final int satirtasarimikullaniciAdi=0x7f080017;
-        public static final int textView3=0x7f080010;
+        public static final int satirtasarimiTvAdSoyad=0x7f080014;
+        public static final int satirtasarimikullaniciAdi=0x7f080015;
     }
     public static final class layout {
         public static final int activity_ana=0x7f030000;

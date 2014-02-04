@@ -125,13 +125,13 @@ public class ArkadaslarimActivity extends ListActivity {
 		
 		@Override
 		protected ArrayList<KullaniciEntity> doInBackground(Void... params) {
-			// dialoğu görmek için sleep koyuyoruz
+			/* dialoğu görmek için sleep koyuyoruz
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			return getArkadasList();
 		}
 		
